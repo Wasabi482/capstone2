@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2024 at 05:16 AM
+-- Generation Time: May 29, 2024 at 03:23 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -86,7 +86,19 @@ INSERT INTO `delivered_items` (`id`, `last_id`, `receipt_trans_number`, `item_na
 (16, 112, 'mnt-124', 'saridon 250mg', 5, 5, '2026-04-08', 25),
 (17, 16, 'mnt-124', 'biogesic 500mg', 4, 10, '2026-04-08', 40),
 (18, 113, 'zsef123', 'Loratadine 120mg', 5, 10, '2026-04-19', 50),
-(19, 114, 'jki456', 'biogesic 500mg', 4, 10, '2026-04-20', 40);
+(19, 114, 'jki456', 'biogesic 500mg', 4, 10, '2026-04-20', 40),
+(20, 115, 'tite', 'ACETYLCYSTEINE  200MG', 7.64, 1, '2026-05-14', 7.64),
+(21, 116, 'hotdog', 'ACETYLCYSTEINE 200MG', 7.64, 1, '2027-02-15', 7.64),
+(22, 117, 'twst123', 'ACETYLCYSTEINE 200MG', 7.64, 5, '2026-05-15', 38.2),
+(23, 22, 'twst123', 'ACYCLOVIR 100MG', 9.82, 3, '2026-05-15', 29.46),
+(24, 23, 'twst123', 'ACYCLOVIR 400MG', 5.67, 4, '2026-05-15', 22.68),
+(30, 123, 'Found from Warehouse2024-05-23-19:42:12', 'ACYCLOVIR 100MG', 0, 2, '2026-05-23', 0),
+(31, 124, 'Found from Warehouse 2024-05-23-20:14:29', 'ACETYLCYSTEINE 200MG', 0, 1, '2026-05-23', 0),
+(32, 125, 'Subracted from warehouse 2024-05-23-22:22:52', 'ACETYLCYSTEINE 200MG', 0, 2, '2026-05-15', 0),
+(33, 126, 'Subracted from warehouse 2024-05-23-22:23:07', 'ACETYLCYSTEINE 200MG', 0, 1, '2026-05-15', 0),
+(34, 127, 'Subtract from warehouse 2024-05-23-22:33:20', 'ACETYLCYSTEINE 200MG', 0, 3, '2026-05-15', 0),
+(35, 128, 'Found from Warehouse 2024-05-23-22:45:21', 'ACETYLCYSTEINE 200MG', 0, 1, '2026-05-15', 0),
+(36, 129, 'Subtract from warehouse 2024-05-23-22:46:10', 'ACETYLCYSTEINE 200MG', 0, 1, '2026-05-15', 0);
 
 -- --------------------------------------------------------
 
@@ -117,7 +129,59 @@ INSERT INTO `deliver_received` (`post_trans_number`, `receipt_trans_number`, `da
 (111, 'fgh1235', '2024-03-12', 'vendor1', 750, 'rdu1'),
 (112, 'mnt-124', '2024-04-08', 'vendor1', 65, 'rdu1'),
 (113, 'zsef123', '2024-04-19', 'vendor3', 50, 'rdu1'),
-(114, 'jki456', '2024-04-20', 'vendor2', 40, 'rdu1');
+(114, 'jki456', '2024-04-20', 'vendor2', 40, 'rdu1'),
+(115, 'tite', '0000-00-00', 'applied pharmaceutical dnt/ beta drug', 7.64, 'rdu1'),
+(116, 'hotdog', '2024-05-14', 'applied pharmaceutical dnt/ beta drug', 7.64, 'rdu1'),
+(117, 'twst123', '2024-05-15', 'applied pharmaceutical dnt/ beta drug', 90.34, 'rdu1'),
+(123, 'Found from Warehouse2024-05-23-19:42:12', '2024-05-23', 'applied pharmaceutical dnt/ beta drug', 0, 'Admin'),
+(124, 'Found from Warehouse 2024-05-23-20:14:29', '2024-05-23', 'applied pharmaceutical dnt/ beta drug', 0, 'Admin'),
+(125, 'Subracted from warehouse 2024-05-23-22:22:52', '2024-05-23', '', 0, 'Admin'),
+(126, 'Subracted from warehouse 2024-05-23-22:23:07', '2024-05-23', '', 0, 'Admin'),
+(127, 'Subtract from warehouse 2024-05-23-22:33:20', '2024-05-23', '', 0, 'Admin'),
+(128, 'Found from Warehouse 2024-05-23-22:45:21', '2024-05-23', 'applied pharmaceutical dnt/ beta drug', 0, 'Admin'),
+(129, 'Subtract from warehouse 2024-05-23-22:46:10', '2024-05-23', '', 0, 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `greet_response`
+--
+
+CREATE TABLE `greet_response` (
+  `id` int(11) NOT NULL,
+  `response` varchar(250) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `greet_response`
+--
+
+INSERT INTO `greet_response` (`id`, `response`) VALUES
+(1, 'Hi! Need a new medicine?'),
+(2, 'Hello! Looking for alternatives?'),
+(3, 'Greetings! Need a different med?'),
+(4, 'Welcome! Which medicine to replace?'),
+(5, 'Hey! Need a new med?');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `instruction_response`
+--
+
+CREATE TABLE `instruction_response` (
+  `id` int(11) NOT NULL,
+  `instructions` varchar(250) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `instruction_response`
+--
+
+INSERT INTO `instruction_response` (`id`, `instructions`) VALUES
+(1, 'For alternatives, type: \'alternative\' followed by the medicine name and size. To check availability, type: \'check\' with the medicine name and size.'),
+(2, 'Type \'alternative\' with the medicine name and size for options. Use \'check\' with the medicine name and size to see availability.'),
+(3, 'Need alternatives? Type \'alternative\' plus medicine name and size. For availability, type \'check\' with medicine name and size.');
 
 -- --------------------------------------------------------
 
@@ -130,8 +194,10 @@ CREATE TABLE `items` (
   `item_name` varchar(50) NOT NULL,
   `what_for` varchar(256) NOT NULL,
   `unit_price` double NOT NULL,
-  `mark_up` int(2) NOT NULL,
+  `mark_up` double NOT NULL,
   `price` double NOT NULL,
+  `type` varchar(256) NOT NULL,
+  `classification` varchar(256) NOT NULL,
   `vendor_name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -139,15 +205,138 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`code`, `item_name`, `what_for`, `unit_price`, `mark_up`, `price`, `vendor_name`) VALUES
-(3, 'saridon 250mg', 'headache', 5, 20, 6, 'vendor1'),
-(4, 'erythromycin 500mg', 'tonsilitis', 8, 25, 10, 'vendor2'),
-(5, 'biogesic 500mg', 'headache', 4, 25, 5, 'vendor3'),
-(6, 'Loratadine 120mg', 'cough', 5, 20, 6, 'Vendor 4'),
-(7, 'Neozep 250mg', 'cough', 4, 25, 5, 'Vendor 5'),
-(8, 'Arseflora 25ml', 'asthma', 8, 20, 10, 'Vendor 6'),
-(9, 'Mefenamic Acid 250mg', 'antibiotic', 6, 20, 7, 'Vendor 1'),
-(10, 'Drenex 30mg', 'rheumatic', 25, 5, 26, 'juliet');
+INSERT INTO `items` (`code`, `item_name`, `what_for`, `unit_price`, `mark_up`, `price`, `type`, `classification`, `vendor_name`) VALUES
+(114, 'ACETYLCYSTEINE 200MG', 'TBA', 7.64, 135.6, 18, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(115, 'ACYCLOVIR 100MG', 'TBA', 9.82, 52.75, 15, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(116, 'ACYCLOVIR 400MG', 'TBA', 5.67, 111.64, 12, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(117, 'ALLOPURINOL 100MG', 'TBA', 0.72, 177.78, 2, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(118, 'ALLOPURINOL 300MG', 'TBA', 1.39, 187.77, 4, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(119, 'AMBROXOL 30MG', 'TBA', 0.55, 263.64, 2, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(120, 'AMBROXOL 75MG', 'TBA', 3.8, 373.68, 18, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(121, 'AMIODARONE 200MG', 'TBA', 6.39, 228.64, 21, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(122, 'AMLODIPINE 10MG', 'TBA', 0.62, 565.16, 4, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(123, 'ATENOLOL 50MG', 'TBA', 1.22, 227.87, 4, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(124, 'ATENOLOL 100MG', 'TBA', 1.99, 201.51, 6, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(125, 'ATORVASTATIN 10MG', 'TBA', 0.77, 679.22, 6, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(126, 'ATORVASTATIN 20MG', 'TBA', 0.98, 1124.49, 12, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(127, 'ATORVASTATIN 40MG', 'TBA', 2.93, 514.33, 18, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(128, 'AZITHROMYCIN 500MG', 'TBA', 11, 445.45, 60, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(129, 'BETAHISTINE 8MG', 'TBA', 2.55, 429.41, 14, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(130, 'BETAHISTINE 16MG', 'TBA', 3.15, 487.3, 19, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(131, 'BETAHISTINE 24MG', 'TBA', 9.45, 196.3, 28, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(132, 'BUTAMIRATE 50MG', 'TBA', 5.1, 153.9, 13, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(133, 'CANDESARTAN 8MG', 'TBA', 3.61, 232.41, 12, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(134, 'CAPTOPRIL 25MG', 'TBA', 0.37, 575.68, 3, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(135, 'CARBAMAZEPINE 200MG', 'TBA', 1.9, 321.05, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(136, 'CARBOCISTEINE 500MG', 'TBA', 0.97, 312.37, 4, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(137, 'CARVIDELOL 6.25MG', 'TBA', 2.91, 140.55, 7, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(138, 'CARVIDELOL 25MG', 'TBA', 4.12, 94.17, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(139, 'CEFACLOR 500MG', 'TBA', 6.22, 462.7, 35, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(140, 'CEFALEXIN 500MG', 'TBA', 2.33, 200.43, 7, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(141, 'CEFIXIME 200MG', 'TBA', 4.5, 455.56, 25, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(142, 'CEFIXIME 400MG', 'TBA', 12.5, 156, 32, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(143, 'CEFUROXIME 500MG', 'TBA', 8.49, 347.59, 38, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(144, 'CELECOXIB 200MG', 'TBA', 1.93, 780.83, 17, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(145, 'CELECOXIB 400MG', 'TBA', 3.95, 836.71, 37, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(146, 'CETIRIZINE 30MG', 'TBA', 0.3, 900, 3, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(147, 'CHLORAMPHENICOL 500MG', 'TBA', 2.51, 178.88, 7, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(148, 'CILOSTAZOL 100MG', 'TBA', 8.19, 339.56, 36, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(149, 'CIPROFLOXACIN 500MG', 'TBA', 1.72, 306.98, 7, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(150, 'CLINDAMYCIN 300MG', 'TBA', 3.41, 163.93, 9, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(151, 'CLONIDINE 75MCG', 'TBA', 3.85, 289.61, 15, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(152, 'CLONIDINE 150MCG', 'TBA', 3.72, 410.75, 19, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(153, 'CLOPIDOGREL 75MG', 'TBA', 0.95, 794.74, 9, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(154, 'CO-AMOXICLAV 625MG', 'TBA', 9, 200, 27, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(155, 'COLCHICINE 500MG', 'TBA', 2.75, 9.09, 3, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(156, 'DICECLOFENAC 100MG', 'TBA', 0.65, 976.92, 7, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(157, 'DIGOXINE 250MG', 'TBA', 2.9, 72.41, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(158, 'DIPHENHYDRAMINE 25MG', 'TBA', 0.58, 417.24, 3, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(159, 'DIPHENHYDRAMINE 50MG', 'TBA', 0.65, 669.23, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(160, 'DOXYCYLINE 100MG', 'TBA', 0.11, 4445.45, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(161, 'ERYTHROMYCINE 500MG', 'TBA', 4.5, 100, 9, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(162, 'ESOMEPRAZOLE 40MG', 'TBA', 4.28, 530.84, 27, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(163, 'ETHAMBUTOL 400MG', 'TBA', 2.46, 143.9, 6, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(164, 'ETORICOXIB 90MG', 'TBA', 6.93, 361.76, 32, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(165, 'ETORICOXIB 120MG', 'TBA', 8, 375, 38, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(166, 'FEBOXUSTAT 40MG', 'TBA', 8.57, 226.72, 28, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(167, 'FUROSEMIDE 20MG', 'TBA', 0.37, 170.27, 1, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(168, 'GABAPENTIN 300MG', 'TBA', 3.42, 1303.51, 48, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(169, 'GLIBENCLAMIDE 5MG', 'TBA', 0.23, 552.17, 2, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(170, 'GLICLAZIDE 30MG', 'TBA', 2, 175, 6, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(171, 'GLICLAZIDE 60MG', 'TBA', 4.5, 166.67, 12, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(172, 'GLIMEPERIDE 2MG', 'TBA', 0.91, 559.34, 6, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(173, 'GLIMEPERIDE 4MG', 'TBA', 3.27, 511.06, 20, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(174, 'IBUPROFEN 200MG', 'TBA', 0.11, 1718.18, 2, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(175, 'IBUPROFEN 400MG', 'TBA', 0.59, 577.97, 4, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(176, 'IRBESARTAN 150MG', 'TBA', 3.52, 326.14, 15, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(177, 'IRBESARTAN 300MG', 'TBA', 7.29, 133.2, 17, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(178, 'KETOPROFEN 50MG', 'TBA', 1.23, 306.5, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(179, 'KETOROLAC 10MG', 'TBA', 6.5, 176.92, 18, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(180, 'LAGUNDI 300MG', 'TBA', 0.91, 339.56, 4, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(181, 'LAGUNDI 600MG', 'TBA', 1.83, 337.16, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(182, 'LANZOPRAZOLE 30MG', 'TBA', 18.04, 55.21, 28, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(183, 'LEVITIRACETAM 500MG', 'TBA', 6.45, 55.21, 10, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(184, 'LEVOFLOXACIN 500MG', 'TBA', 3.6, 705.56, 29, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(185, 'LEVOTHYROXINE 50MCG', 'TBA', 1.72, 161.63, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(186, 'LEVOTHYROXINE 100MCG', 'TBA', 4.64, 72.41, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(187, 'LOPERAMIDE 2MG', 'TBA', 0.48, 525, 3, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(188, 'LORATADINE 10MG', 'TBA', 1.04, 573.08, 7, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(189, 'LOSARTAN 50MG', 'TBA', 0.6, 733.33, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(190, 'LOSARTAN 100MG', 'TBA', 1.5, 433.33, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(191, 'METFORMIN 500MG', 'TBA', 0.65, 207.69, 2, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(192, 'METHYLDOPA 250MG', 'TBA', 3.85, 107.79, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(193, 'METHYLPREDNISOLONE 16MG', 'TBA', 6.95, 259.71, 25, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(194, 'METOPROLOL 50MG', 'TBA', 0.55, 263.64, 2, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(195, 'METRONIDAZOLE 500MG', 'TBA', 0.85, 488.24, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(196, 'MONTELUKAST 5MG', 'TBA', 3.52, 169.89, 10, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(197, 'NAPROXEN SODIUM 500MG', 'TBA', 4.2, 90.48, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(198, 'NEBIVOLOL 5MG', 'TBA', 6.77, 461.3, 38, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(199, 'NITROFURANTOIN 100MG', 'TBA', 1.85, 170.27, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(200, 'OFLOXACIN 200MG', 'TBA', 1.8, 344.44, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(201, 'OFLOXACIN 400MG', 'TBA', 2.92, 413.7, 15, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(202, 'OMEPRAZOLE 40MG', 'TBA', 3.45, 247.83, 12, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(203, 'PANTOPRAZOLE 40MG', 'TBA', 3.57, 247.83, 13, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(204, 'PREDNISONE 5MG', 'TBA', 0.54, 176.24, 2, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(205, 'PREDNISONE 20MG', 'TBA', 2.35, 112.77, 5, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(206, 'PREGABALIN 75MG', 'TBA', 2.98, 705.37, 24, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(207, 'REBAMIPIDE 100MG', 'TBA', 14.84, 115.63, 32, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(208, 'RIFAMPICIN 450MG', 'TBA', 7.5, 20, 9, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(209, 'ROSUVASTATIN 10MG', 'TBA', 4.06, 343.35, 18, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(210, 'ROSUVASTATIN 20MG', 'TBA', 2.95, 747.46, 25, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(211, 'SALBUTAMOL 2MG', 'TBA', 0.17, 488.24, 1, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(212, 'SALBUTAMOL 4MG', 'TBA', 0.29, 417.24, 2, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(213, 'SIMVASTATIN 20MG', 'TBA', 0.76, 689.47, 6, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(214, 'SODIUM BICARBONATE 650MG', 'TBA', 0.9, 288.89, 4, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(215, 'SPIRONOLACTONE 25MG', 'TBA', 3.19, 150.78, 8, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(216, 'TELMISARTAN 40MG', 'TBA', 1.93, 366.32, 9, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(217, 'TELMISARTAN 80MG', 'TBA', 4.83, 210.56, 15, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(218, 'TRAMADOL 50MG', 'TBA', 1.02, 488.24, 6, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(219, 'TRANEXAMIC 500MG', 'TBA', 3.82, 240.31, 13, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(220, 'TRIMETAZIDINE 35MG', 'TBA', 2.77, 224.91, 9, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(221, 'URSEODEOXYCHOLIC ACID 250MG', 'TBA', 17.43, 123.75, 39, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(222, 'URSEODEOXYCHOLIC ACID 300MG', 'TBA', 18.43, 127.89, 42, 'Generic', 'medicine', 'applied pharmaceutical dnt/ beta drug'),
+(223, 'GREEN CROSS REGULAR 70% 75ML', '', 22.05, 17.91, 26, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(224, 'GREEN CROSS REGULAR 70% 150ML', '', 32.45, 20.18, 39, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(225, 'GREEN CROSS REGULAR 70% 250ML', '', 46.46, 18.38, 55, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(226, 'GREEN CROSS REGULAR 70% 500ML', '', 82.51, 18.77, 98, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(227, 'GREEN CROSS W/ MOISTURIZER 70% 75ML', '', 18.67, 37.21, 26, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(228, 'GREEN CROSS W/ MOISTURIZER 70% 150ML', '', 32.98, 18.25, 39, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(229, 'GREEN CROSS W/ MOISTURIZER 70% 250ML', '', 48.61, 19.32, 58, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(230, 'GREEN CROSS W/ MOISTURIZER 70% 300ML', '', 80.04, 18.69, 95, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(231, 'GREEN CROSS W/ MOISTURIZER 70% 500ML', '', 84.36, 17.35, 99, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(232, 'GREEN CROSS ETHYL ALCOHOL 70% 75ML', '', 21.42, 21.38, 26, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(233, 'GREEN CROSS ETHYL ALCOHOL 70% 150ML', '', 33.79, 18.38, 40, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(234, 'GREEN CROSS ETHYL ALCOHOL 70% 250ML', '', 49.13, 18.05, 58, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(235, 'GREEN CROSS ETHYL ALCOHOL 70% 300ML', '', 80.04, 18.69, 95, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(236, 'GREEN CROSS ETHYL ALCOHOL 70% 500ML', '', 85.6, 15.65, 99, '', 'alcohol', 'RIGHT PRICE CORPORATION'),
+(237, 'ACYCLOVIR CREAM 5G', '', 95, 268.42, 350, 'Generic', 'creams and ointment', 'applied pharmaceutical dnt/ beta drug'),
+(238, 'CALAMINE+ZINC OXIDE 3.5G', '', 34.56, 30.21, 45, 'Generic', 'creams and ointment', 'applied pharmaceutical dnt/ beta drug'),
+(239, 'CLOBETASOL CREAM 10G', '', 39.5, 264.56, 144, 'Generic', 'creams and ointment', 'applied pharmaceutical dnt/ beta drug'),
+(240, 'DICLOFENAC GEL 30G', '', 113.4, 120.46, 250, 'Generic', 'creams and ointment', 'applied pharmaceutical dnt/ beta drug'),
+(241, 'ERYTHROMYCIN 5G', '', 116.84, 62.62, 190, 'Generic', 'creams and ointment', 'applied pharmaceutical dnt/ beta drug'),
+(242, 'MUPIROCIN OINTMENT 5G', '', 46.2, 257.14, 165, 'Generic', 'creams and ointment', 'applied pharmaceutical dnt/ beta drug'),
+(243, 'ALGESIA TABLET ', 'ANTI-INFLAMMATORY', 0, 0, 55, 'Branded', 'medicine', 'UNITED'),
+(244, 'ABBOCATH GAUGE #18 ', '', 0, 0, 65, '', 'medical supp', 'Pamilijhan');
 
 -- --------------------------------------------------------
 
@@ -168,8 +357,6 @@ CREATE TABLE `push_orders` (
 --
 
 INSERT INTO `push_orders` (`id`, `item_name`, `reason`, `qty`, `status`) VALUES
-(1, 'saridon 250 mg', 'Low_on_Stock', 1, 'unread'),
-(2, 'erythromycin 500 mg', 'Low_on_Stock', 2, 'read'),
 (3, 'erythromycin 500 mg', 'Low_on_Stock', 1, 'read'),
 (4, 'erythromycin 500 mg', 'Low_on_Stock', 11, 'read'),
 (5, 'erythromycin 500 mg', 'Low_on_Stock', 11, 'read'),
@@ -199,13 +386,37 @@ CREATE TABLE `reports` (
 --
 
 INSERT INTO `reports` (`id`, `item_name`, `reason`, `qty`, `expiry_date`, `status`) VALUES
-(1, 'saridon250mg', 'Damaged', 1, '0000-00-00', 'read'),
-(2, 'saridon250mg', 'Near_Expiration_Date', 1, '2024-02-29', 'read'),
-(3, 'erythromycin500mg', 'Damaged', 1, '0000-00-00', 'read'),
 (4, 'erythromycin500mg', 'Damaged', 1, '0000-00-00', 'read'),
 (5, 'erythromycin500mg', 'Damaged', 100, '0000-00-00', 'read'),
 (6, 'erythromycin500mg', 'Damaged', 100, '0000-00-00', 'read'),
 (7, 'erythromycin500mg', 'Damaged', 123, '0000-00-00', 'read');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `training_greetings`
+--
+
+CREATE TABLE `training_greetings` (
+  `id` int(11) NOT NULL,
+  `greetings` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `training_greetings`
+--
+
+INSERT INTO `training_greetings` (`id`, `greetings`) VALUES
+(11, 'Hi! Looking for alternatives to a specific medicine? Tell me the name, and I\'ll help!'),
+(12, 'Hello! Need an alternative medication? Provide the medicine name, and I\'ll find options for you.'),
+(13, 'Greetings! I can recommend alternative medicines. Which medicine are you looking to replace?'),
+(14, 'Welcome! Tell me the name of the medicine you\'re seeking an alternative for, and I\'ll check for you.'),
+(15, 'Hey there! Need a different medicine? Let me know the current one, and I\'ll suggest alternatives.'),
+(16, 'Good day! I\'m here to help you find alternative medications. What\'s the name of the medicine?'),
+(17, 'Hi! Want a different medication option? Share the name of the medicine, and I\'ll find alternatives.'),
+(18, 'Hello! I can suggest alternative medicines. What medication are you looking to replace?'),
+(19, 'Welcome! Let me help you find alternative medicines. Which medicine do you need an alternative for?'),
+(20, 'Hi there! Looking for a substitute medication? Tell me the current medicine name, and I\'ll find alternatives.');
 
 -- --------------------------------------------------------
 
@@ -223,9 +434,130 @@ CREATE TABLE `training_items` (
 --
 
 INSERT INTO `training_items` (`id`, `words`) VALUES
-(1, 'saridon'),
-(2, '250mg'),
-(3, 'Neozep');
+(1, 'SARIDON'),
+(2, '250MG'),
+(3, 'NEOZEP'),
+(5, '100MG'),
+(8, '500MG'),
+(9, 'TEST'),
+(10, '2MG'),
+(11, 'ACETYLCYSTEINE'),
+(12, '200MG'),
+(14, 'ACYCLOVIR'),
+(15, '400MG'),
+(16, 'ALLOPURINOL'),
+(17, '300MG'),
+(18, 'AMBROXOL'),
+(19, '30MG'),
+(20, '75MG'),
+(21, 'AMIODARONE'),
+(22, 'AMLODIPINE'),
+(23, '10MG'),
+(24, 'ATENOLOL'),
+(25, '50MG'),
+(26, 'ATORVASTATIN'),
+(27, '20MG'),
+(28, '40MG'),
+(29, 'AZITHROMYCIN'),
+(30, 'BETAHISTINE'),
+(31, '8MG'),
+(32, '16MG'),
+(33, '24MG'),
+(34, 'BUTAMIRATE'),
+(35, 'CANDESARTAN'),
+(36, 'CAPTOPRIL'),
+(37, '25MG'),
+(38, 'CARBAMAZEPINE'),
+(39, 'CARBOCISTEINE'),
+(40, 'CARVIDELOL'),
+(41, '6.25MG'),
+(42, 'CEFACLOR'),
+(43, 'CEFALEXIN'),
+(44, 'CEFIXIME'),
+(45, 'CEFUROXIME'),
+(46, 'CELECOXIB'),
+(47, 'CETIRIZINE'),
+(48, 'CHLORAMPHENICOL'),
+(49, 'CILOSTAZOL'),
+(50, ''),
+(51, 'CIPROFLOXACIN'),
+(52, 'CLINDAMYCIN'),
+(53, 'CLONIDINE'),
+(54, '75MCG'),
+(55, '150MCG'),
+(56, 'CLOPIDOGREL'),
+(57, 'CO-AMOXICLAV'),
+(58, '625MG'),
+(59, 'COLCHICINE'),
+(60, 'DICECLOFENAC'),
+(61, 'DIGOXINE'),
+(62, 'DIPHENHYDRAMINE'),
+(63, 'DOXYCYLINE'),
+(64, 'ERYTHROMYCINE'),
+(65, 'ESOMEPRAZOLE'),
+(66, 'ETHAMBUTOL'),
+(67, 'ETORICOXIB'),
+(68, '90MG'),
+(69, '120MG'),
+(70, 'FEBOXUSTAT'),
+(71, 'FUROSEMIDE'),
+(72, 'GABAPENTIN'),
+(73, 'GLIBENCLAMIDE'),
+(74, '5MG'),
+(75, 'GLICLAZIDE'),
+(76, '60MG'),
+(77, 'GLIMEPERIDE'),
+(78, '4MG'),
+(79, 'IBUPROFEN'),
+(80, 'IRBESARTAN'),
+(81, '150MG'),
+(82, 'KETOPROFEN'),
+(83, 'KETOROLAC'),
+(84, 'LAGUNDI'),
+(85, '600MG'),
+(86, 'LANZOPRAZOLE'),
+(87, 'LEVITIRACETAM'),
+(88, 'LEVOFLOXACIN'),
+(89, 'LEVOTHYROXINE'),
+(90, '50MCG'),
+(91, '100MCG'),
+(92, 'LOPERAMIDE'),
+(93, 'LORATADINE'),
+(94, 'LOSARTAN'),
+(95, 'METFORMIN'),
+(96, 'METHYLDOPA'),
+(97, 'METHYLPREDNISOLONE'),
+(98, 'METOPROLOL'),
+(99, 'METRONIDAZOLE'),
+(100, 'MONTELUKAST'),
+(101, 'NAPROXEN'),
+(102, 'SODIUM'),
+(103, 'NEBIVOLOL'),
+(104, 'NITROFURANTOIN'),
+(105, 'OFLOXACIN'),
+(106, 'OMEPRAZOLE'),
+(107, 'PANTOPRAZOLE'),
+(108, 'PREDNISONE'),
+(109, 'PREGABALIN'),
+(110, 'REBAMIPIDE'),
+(111, 'RIFAMPICIN'),
+(112, '450MG'),
+(113, 'ROSUVASTATIN'),
+(114, 'SALBUTAMOL'),
+(115, 'SIMVASTATIN'),
+(116, 'BICARBONATE'),
+(117, '650MG'),
+(118, 'SPIRONOLACTONE'),
+(119, 'TELMISARTAN'),
+(120, '80MG'),
+(121, 'TRAMADOL'),
+(122, 'TRANEXAMIC'),
+(123, 'TRIMETAZIDINE'),
+(124, '35MG'),
+(125, 'URSEODEOXYCHOLIC'),
+(126, 'ACID'),
+(127, 'ALGESIA'),
+(128, 'TABLET');
 
 -- --------------------------------------------------------
 
@@ -296,7 +628,16 @@ INSERT INTO `transactions` (`id`, `amount`, `tender_amount`, `date_transacted`, 
 (30, 260, 260, '2024-03-12', '23:15:59', 'Cash', 'frontend1'),
 (31, 312, 350, '2024-03-12', '23:17:05', 'Cash', 'frontend1'),
 (32, 6, 10, '2024-04-19', '23:24:21', 'Cash', 'frontend1'),
-(33, 25, 50, '2024-04-20', '11:50:34', 'Cash', 'frontend1');
+(33, 25, 50, '2024-04-20', '11:50:34', 'Cash', 'frontend1'),
+(34, 12, 100, '2024-05-14', '18:26:02', 'Cash', 'frontend1'),
+(35, 24, 26, '2024-05-14', '18:27:23', 'Cash', 'frontend1'),
+(36, 18, 20, '2024-05-15', '16:20:05', 'Cash', 'frontend1'),
+(37, 18, 50, '2024-05-15', '16:55:09', 'Cash', 'frontend1'),
+(38, 18, 100, '2024-05-15', '17:42:04', 'Cash', 'frontend2'),
+(39, 60, 100, '2024-05-15', '17:50:49', 'Cash', 'frontend2'),
+(40, 15, 15, '2024-05-15', '17:52:55', 'Gcash', 'frontend2'),
+(41, 18, 20, '2024-05-15', '18:24:06', 'Cash', 'frontend2'),
+(42, 12, 12, '2024-05-15', '18:51:49', 'Gcash', 'frontend2');
 
 -- --------------------------------------------------------
 
@@ -348,7 +689,18 @@ INSERT INTO `transactions_items` (`id`, `order_id`, `item_name`, `price`, `qty`)
 (32, 30, 'Drenex 30mg', 26, 10),
 (33, 31, 'Drenex 30mg', 26, 12),
 (34, 32, 'saridon 250mg', 6, 1),
-(35, 33, 'biogesic 500mg', 5, 5);
+(35, 33, 'biogesic 500mg', 5, 5),
+(36, 34, 'SARIDON 250MG', 12, 1),
+(37, 35, 'SARIDON 250MG', 12, 2),
+(38, 36, 'ACETYLCYSTEINE 200MG', 18, 1),
+(39, 37, 'ACETYLCYSTEINE 200MG', 18, 1),
+(40, 38, 'ACETYLCYSTEINE 200MG', 18, 1),
+(41, 39, 'ACETYLCYSTEINE 200MG', 18, 1),
+(42, 39, 'ACYCLOVIR 100MG', 15, 2),
+(43, 39, 'ACYCLOVIR 400MG', 12, 1),
+(44, 40, 'ACYCLOVIR 100MG', 15, 1),
+(45, 41, 'ACETYLCYSTEINE 200MG', 18, 1),
+(46, 42, 'ACYCLOVIR 400MG', 12, 1);
 
 -- --------------------------------------------------------
 
@@ -369,15 +721,10 @@ CREATE TABLE `warehouse` (
 --
 
 INSERT INTO `warehouse` (`warehouse_code`, `item_name`, `item_qty`, `expiry_date`, `vendor_name`) VALUES
-(37, 'Mefenamic Acid 250mg', 7, '2026-03-11', 'vendor1'),
-(38, 'Arseflora 25ml', 9, '2026-03-11', 'vendor1'),
-(39, 'Neozep 250mg', 4, '2026-03-11', 'vendor1'),
-(41, 'Drenex 30mg', 8, '2026-03-13', 'vendor1'),
-(42, 'saridon 250mg', 5, '2026-04-08', 'vendor1'),
-(43, 'biogesic 500mg', 5, '2026-04-08', 'vendor1'),
-(44, 'saridon 250mg', 2, '2024-05-01', 'vendor1'),
-(45, 'Loratadine 120mg', 10, '2026-04-19', 'vendor3'),
-(46, 'biogesic 500mg', 10, '2026-04-20', 'vendor2');
+(49, 'ACETYLCYSTEINE 200MG', 2, '2026-05-15', 'applied pharmaceutical dnt/ beta drug'),
+(51, 'ACYCLOVIR 400MG', 2, '2026-05-15', 'applied pharmaceutical dnt/ beta drug'),
+(58, 'ACYCLOVIR 100MG', 2, '2026-05-23', 'applied pharmaceutical dnt/ beta drug'),
+(59, 'ACETYLCYSTEINE 200MG', 1, '2026-05-23', 'applied pharmaceutical dnt/ beta drug');
 
 --
 -- Indexes for dumped tables
@@ -402,6 +749,18 @@ ALTER TABLE `deliver_received`
   ADD PRIMARY KEY (`post_trans_number`);
 
 --
+-- Indexes for table `greet_response`
+--
+ALTER TABLE `greet_response`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `instruction_response`
+--
+ALTER TABLE `instruction_response`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
@@ -417,6 +776,12 @@ ALTER TABLE `push_orders`
 -- Indexes for table `reports`
 --
 ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `training_greetings`
+--
+ALTER TABLE `training_greetings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -463,19 +828,31 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `delivered_items`
 --
 ALTER TABLE `delivered_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `deliver_received`
 --
 ALTER TABLE `deliver_received`
-  MODIFY `post_trans_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `post_trans_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+
+--
+-- AUTO_INCREMENT for table `greet_response`
+--
+ALTER TABLE `greet_response`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `instruction_response`
+--
+ALTER TABLE `instruction_response`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 
 --
 -- AUTO_INCREMENT for table `push_orders`
@@ -490,34 +867,40 @@ ALTER TABLE `reports`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `training_greetings`
+--
+ALTER TABLE `training_greetings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `training_items`
 --
 ALTER TABLE `training_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- AUTO_INCREMENT for table `training_words`
 --
 ALTER TABLE `training_words`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `transactions_items`
 --
 ALTER TABLE `transactions_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `warehouse`
 --
 ALTER TABLE `warehouse`
-  MODIFY `warehouse_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `warehouse_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

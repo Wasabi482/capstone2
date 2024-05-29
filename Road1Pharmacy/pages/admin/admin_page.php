@@ -64,10 +64,10 @@ if (isset($_POST['submit'])) {
 <head>
    <?php include "ham.php"; ?>
    <style>
-      #dashboard,
+      /* #dashboard,
       #main_card {
          border: 1px solid #4723D9;
-      }
+      } */
 
       #content {
          border: 2px solid black;
@@ -78,7 +78,8 @@ if (isset($_POST['submit'])) {
       }
 
       .profit {
-         background-image: url("../../img/profit.gif");
+         /* background-image: url("../../img/profit.gif"); */
+         background-color: #FF5964;
          background-repeat: no-repeat;
          background-size: 100% 100%;
 

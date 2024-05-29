@@ -26,23 +26,11 @@ include '../../database/config.php'; ?>
         $input_name = mysqli_real_escape_string($conn, $_POST['item_name']);
         $unit_price = $_POST['unit_price'];
         $mark_up = $_POST['mark_up'];
-        $mark_up_dec = $mark_up / 100;
-
-
-
-        //Calculate the cost price by multiplying unit price with mark up percentage
-        $price = ($mark_up_dec * $unit_price) + $unit_price;
-        $price = number_format($price, 2);
-        if (fmod($price, 1) < 0.30) {
-            // Round down
-            $price = floor($price);
-        } else {
-            // Round up
-            $price = ceil($price);
-        }
+        $price = $_POST['selling_price'];
 
         $unit_type = $_POST['unit_type'];
         $unit_qty = $_POST['unit_qty'];
+
         $item_name = $input_name . " " . $unit_qty . $unit_type;
         $item_name = strtoupper($item_name);
         $indication = strtoupper($_POST['indication']);
@@ -50,6 +38,14 @@ include '../../database/config.php'; ?>
         $classification = $_POST['class'];
         $vendor_name = $_POST['vendor_name'];
 
+        // echo $item_name;
+        // echo $unit_price;
+        // echo $mark_up;
+        // echo $price;
+        // echo $indication;
+        // echo $type;
+        // echo $classification;
+        // echo $vendor_name;
 
 
         $select = "SELECT * FROM items WHERE item_name = '$item_name'";
@@ -65,7 +61,7 @@ include '../../database/config.php'; ?>
                        text:  'Item  Already Exists',
                        icon: 'error',
                        confirmButtonText: 'Add New'
-                   }).then(() =>{window.location.href = '../../pages/admin/admin_add_item.php';});
+                   }).then(() =>{window.location.href = '../../pages/admin/admin_view_items.php';});
                    </script>
                </div>
            </main>
@@ -155,31 +151,30 @@ include '../../database/config.php'; ?>
                                 </main>";
             }
         }
-    } elseif (isset($_POST['submit_alcohol'])) {
+    } elseif (isset($_POST['submit_others'])) {
         $input_name = mysqli_real_escape_string($conn, $_POST['item_name']);
         $unit_price = $_POST['unit_price'];
         $mark_up = $_POST['mark_up'];
-        $mark_up_dec = $mark_up / 100;
-
-
-
-        //Calculate the cost price by multiplying unit price with mark up percentage
-        $price = ($mark_up_dec * $unit_price) + $unit_price;
-        $price = number_format($price, 2);
-        if (fmod($price, 1) < 0.30) {
-            // Round down
-            $price = floor($price);
-        } else {
-            // Round up
-            $price = ceil($price);
-        }
+        $price = $_POST['selling_price'];
 
         $unit_type = $_POST['unit_type'];
         $unit_qty = $_POST['unit_qty'];
+
         $item_name = $input_name . " " . $unit_qty . $unit_type;
         $item_name = strtoupper($item_name);
+        $type = $_POST['type'];
         $classification = $_POST['class'];
         $vendor_name = $_POST['vendor_name'];
+
+        // echo $item_name;
+        // echo $unit_price;
+        // echo $mark_up;
+        // echo $price;
+        // echo $type;
+        // echo $classification;
+        // echo $vendor_name;
+
+
         $select = "SELECT * FROM items WHERE item_name = '$item_name'";
 
         $result = mysqli_query($conn, $select);
@@ -193,85 +188,24 @@ include '../../database/config.php'; ?>
                        text:  'Item  Already Exists',
                        icon: 'error',
                        confirmButtonText: 'Add New'
-                   }).then(() =>{window.location.href = '../../pages/admin/admin_add_item.php';});
+                   }).then(() =>{window.location.href = '../../pages/admin/admin_view_items.php';});
                    </script>
                </div>
            </main>
                 ";
         } else {
 
-            $insert = "INSERT INTO items(item_name,unit_price, mark_up, price,classification, vendor_name) VALUES('$item_name','$unit_price','$mark_up','$price','$classification','$vendor_name')";
+            $insert = "INSERT INTO items(item_name,unit_price, mark_up, price,type,classification, vendor_name) VALUES('$item_name','$unit_price','$mark_up','$price','$type','$classification','$vendor_name')";
             $insert_to_items = mysqli_query($conn, $insert);
             echo "<main role='main' class='col-md-9 ml-sm-auto col-lg-10 px-4 content-wrapper'>
                <div class='content'>
                    <script>
                    Swal.fire({
                        title: 'Success!',
-                       text:  'New Alcohol item added',
+                       text:  'New item added',
                        icon: 'success',
                        confirmButtonText: 'Add New'
-                   }).then(() =>{window.location.href = '../../pages/admin/admin_add_item.php';});
-                   </script>
-               </div>
-           </main>
-                ";
-        }
-    } elseif (isset($_POST['submit_cNo'])) {
-        $input_name = mysqli_real_escape_string($conn, $_POST['item_name']);
-        $unit_price = $_POST['unit_price'];
-        $mark_up = $_POST['mark_up'];
-        $mark_up_dec = $mark_up / 100;
-
-
-
-        //Calculate the cost price by multiplying unit price with mark up percentage
-        $price = ($mark_up_dec * $unit_price) + $unit_price;
-        $price = number_format($price, 2);
-        if (fmod($price, 1) < 0.30) {
-            // Round down
-            $price = floor($price);
-        } else {
-            // Round up
-            $price = ceil($price);
-        }
-
-        $unit_type = $_POST['unit_type'];
-        $unit_qty = $_POST['unit_qty'];
-        $item_name = $input_name . " " . $unit_qty . $unit_type;
-        $item_name = strtoupper($item_name);
-        $classification = $_POST['class'];
-        $vendor_name = $_POST['vendor_name'];
-        $select = "SELECT * FROM items WHERE item_name = '$item_name'";
-
-        $result = mysqli_query($conn, $select);
-
-        if (mysqli_num_rows($result) > 0) {
-            echo "<main role='main' class='col-md-9 ml-sm-auto col-lg-10 px-4 content-wrapper'>
-               <div class='content'>
-                   <script>
-                   Swal.fire({
-                       title: 'Error!',
-                       text:  'Item  Already Exists',
-                       icon: 'error',
-                       confirmButtonText: 'Add New'
-                   }).then(() =>{window.location.href = '../../pages/admin/admin_add_item.php';});
-                   </script>
-               </div>
-           </main>
-                ";
-        } else {
-
-            $insert = "INSERT INTO items(item_name,unit_price, mark_up, price,classification, vendor_name) VALUES('$item_name','$unit_price','$mark_up','$price','$classification','$vendor_name')";
-            $insert_to_items = mysqli_query($conn, $insert);
-            echo "<main role='main' class='col-md-9 ml-sm-auto col-lg-10 px-4 content-wrapper'>
-               <div class='content'>
-                   <script>
-                   Swal.fire({
-                       title: 'Success!',
-                       text:  'New Cream and Ointment item added',
-                       icon: 'success',
-                       confirmButtonText: 'Add New'
-                   }).then(() =>{window.location.href = '../../pages/admin/admin_add_item.php';});
+                   }).then(() =>{window.location.href = '../../pages/admin/admin_view_items.php';});
                    </script>
                </div>
            </main>
@@ -279,8 +213,8 @@ include '../../database/config.php'; ?>
         }
     }
 
-
     ?>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

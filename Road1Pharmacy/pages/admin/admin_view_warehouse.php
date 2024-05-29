@@ -23,7 +23,7 @@ include '../../actions/session_check.php';
         <button id='exportExcelBtn' class='btn btn-primary mb-2'>Export to Excel</button>
         <form id='pdfForm' action='../../actions/admin/admin_generate_pdf.php' method='post'>
             <input type='hidden' id='tableContent' name='table_content'>
-            <button type='submit' name='generate_pdf' class='btn btn-primary'>Export to PDF</button>
+            <!-- <button type='submit' name='generate_pdf' class='btn btn-primary'>Export to PDF</button> -->
         </form>
 
         <script>
@@ -40,8 +40,17 @@ include '../../actions/session_check.php';
             <div class='row'>
 
                 <?php
+                $limit = 10; // Number of items per page
+                $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
+                $offset = ($page - 1) * $limit; // Offset for the SQL query
+
+                // Get total number of items
+                $total_items = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM items"));
+
+                // Calculate total number of pages
+                $total_pages = ceil($total_items / $limit);
                 // Check if the query was successful
-                $get_items = "SELECT item_name FROM items";
+                $get_items = "SELECT item_name FROM items ORDER BY item_name ASC LIMIT $offset, $limit";
                 $items_result = mysqli_query($conn, $get_items);
                 if (!$items_result) {
                     die('Error in query: ' . mysqli_error($conn));
@@ -91,15 +100,17 @@ include '../../actions/session_check.php';
                     if ($item_qty == 0) {
                         echo "<td style= 'color:red;'>" . $item_qty . "</td>";
                         echo "<td>" . $vendor_name . "</td>";
-                        echo "<td></td>";
+                        echo "<td scope='col' class=''>" . "<a href='#' class='btn btn-success' onclick='sendItemName(this)'>Adjust</a>" . "</td>";
                     } elseif ($item_qty > 0 && $item_qty <= 10) {
-                        echo "<td style='color:red;'>" . $item_qty . "</td>";
-                        echo "<td>" . $vendor_name . "</td>";
-                        echo "<td scope='col' class=''> " . "<a href='#' class='btn btn-info view_details'>View Details</a>" . "</td>";
+                        echo "<td style='color:red;' class='qty'>" . $item_qty . "</td>";
+                        echo "<td class='vendor'>" . $vendor_name . "</td>";
+                        echo "<td scope='col' class=''> " . "<a href='#' class='btn btn-info view_details mr-1'>View Details</a>" .
+                            "</td>";
                     } else {
-                        echo "<td>" . $item_qty . "</td>";
-                        echo "<td>" . $vendor_name . "</td>";
-                        echo "<td scope='col' class=''> " . "<a href='#' class='btn btn-info view_details'>View Details</a>" . "</td>";
+                        echo "<td class='qty'>" . $item_qty . "</td>";
+                        echo "<td class='vendor'>" . $vendor_name . "</td>";
+                        echo "<td scope='col' class=''> " . "<a href='#' class='btn btn-info view_details mr-1'>View Details</a>" .
+                            "</td>";
                     }
                     echo "</tr>";
                 }
@@ -114,6 +125,29 @@ include '../../actions/session_check.php';
     </section>
     <br/>
         ";
+                // Pagination buttons
+                echo "<div class='row justify-content-center mt-4'>";
+                echo "<nav aria-label='Page navigation example'>";
+                echo "<ul class='pagination'>";
+
+                if ($page > 1) {
+                    echo "<li class='page-item'><a class='page-link' href='?page=" . ($page - 1) . "'>Previous</a></li>";
+                }
+
+                $startPage = max(1, $page - 1);
+                $endPage = min($startPage + 2, $total_pages);
+
+                for ($i = $startPage; $i <= $endPage; $i++) {
+                    echo "<li class='page-item " . ($page == $i ? 'active' : '') . "'><a class='page-link' href='?page=$i'>$i</a></li>";
+                }
+
+                if ($page < $total_pages) {
+                    echo "<li class='page-item'><a class='page-link' href='?page=" . ($page + 1) . "'>Next</a></li>";
+                }
+
+                echo "</ul>";
+                echo "</nav>";
+                echo "</div>";
                 ?>
                 </tbody>
                 </table>
@@ -212,10 +246,19 @@ include '../../actions/session_check.php';
             XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
             // Save the workbook as an Excel file
-            XLSX.writeFile(workbook, 'table_data.xlsx');
+            XLSX.writeFile(workbook, 'warehouse.xlsx');
         });
 
         // Export to PDF button click event
 
     });
+</script>
+<script>
+    function sendItemName(button) {
+        var row = button.closest('tr'); // Assuming the button is inside a table row (tr)
+        var itemName = row.querySelector('.item_name').innerHTML; // Assuming the item name is in a column with the class "item_name"
+
+        // Redirect to adjust_item.php with the item_name as a parameter
+        window.location.href = 'adjust_item.php?item_name=' + encodeURIComponent(itemName);
+    }
 </script>

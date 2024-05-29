@@ -41,10 +41,6 @@ include '../session_check.php';
 
                 echo "  <h2><center>Item List</center></h2>
         <button id='exportExcelBtn' class='btn btn-primary mb-2'>Export to Excel</button>
-        <form id='pdfForm' action='../../actions/admin/admin_generate_pdf.php' method='post' class='mb-2'>
-            <input type='hidden' id='tableContent' name='table_content'>
-            <button type='submit' name='generate_pdf' class='btn btn-primary'>Export to PDF</button>
-        </form>
     <section class='intro'>
         <div class='gradient-custom-2 h-100'>
             <div class='mask d-flex align-items-center h-100'>

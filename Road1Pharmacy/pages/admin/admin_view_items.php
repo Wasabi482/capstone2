@@ -22,7 +22,7 @@ include '../../actions/session_check.php';
     include '../../database/config.php';
 
     // Pagination variables
-    $limit = 3; // Number of items per page
+    $limit = 10; // Number of items per page
     $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
     $offset = ($page - 1) * $limit; // Offset for the SQL query
 
@@ -37,7 +37,11 @@ include '../../actions/session_check.php';
     echo "";
     echo "<div class='row justify-content-between'>
         <div class='col-2'> <h2>Item List</h2></div>
-        <div class='col-2'><a href='admin_add_item.php' class='btn btn-primary my-2'>➕Add Item</a></div>
+        <div class='col-2'>
+        <a href='add_medicine2.php' class='btn btn-primary my-2'>➕Add med</a>
+        <a href='add_others.php' class='btn btn-primary my-2'>➕Add othters</a>
+        <a href='admin_add_item.php' class='btn btn-primary my-2'>➕Add Item</a>
+        </div>
     </div>
     <section class='intro'>
         <div class='gradient-custom-2 h-100'>
@@ -85,8 +89,7 @@ include '../../actions/session_check.php';
             echo "<td>" . $type . "</td>";
             echo "<td>" . $classification . "</td>";
             echo "<td>" . $vendor_name . "</td>";
-            echo "<td>" . "<a href='#' class='btn btn-success edit_item'>📝Edit</a> 
-            &nbsp&nbsp 
+            echo "<td>" . "<a href='#' class='btn btn-success edit_item mb-1'>📝Edit</a> &nbsp
             <a href='#' class='btn btn-danger delete_item'>🗑️Delete</a>" . "</td>";
             echo "</tr>";
         }
@@ -108,21 +111,44 @@ include '../../actions/session_check.php';
 
 
     // Pagination buttons
+    // echo "<div class='row justify-content-center mt-4'>";
+    // echo "<nav aria-label='Page navigation example'>";
+    // echo "<ul class='pagination'>";
+
+    // // Previous button
+    // if ($page > 1) {
+    //     echo "<li class='page-item'><a class='page-link' href='?page=" . ($page - 1) . "'>Previous</a></li>";
+    // }
+
+    // // Page numbers
+    // for ($i = 1; $i <= $total_pages; $i++) {
+    //     echo "<li class='page-item " . ($page == $i ? 'active' : '') . "'><a class='page-link' href='?page=$i'>$i</a></li>";
+    // }
+
+    // // Next button
+    // if ($page < $total_pages) {
+    //     echo "<li class='page-item'><a class='page-link' href='?page=" . ($page + 1) . "'>Next</a></li>";
+    // }
+
+    // echo "</ul>";
+    // echo "</nav>";
+    // echo "</div>";
+
     echo "<div class='row justify-content-center mt-4'>";
     echo "<nav aria-label='Page navigation example'>";
     echo "<ul class='pagination'>";
 
-    // Previous button
     if ($page > 1) {
         echo "<li class='page-item'><a class='page-link' href='?page=" . ($page - 1) . "'>Previous</a></li>";
     }
 
-    // Page numbers
-    for ($i = 1; $i <= $total_pages; $i++) {
+    $startPage = max(1, $page - 1);
+    $endPage = min($startPage + 2, $total_pages);
+
+    for ($i = $startPage; $i <= $endPage; $i++) {
         echo "<li class='page-item " . ($page == $i ? 'active' : '') . "'><a class='page-link' href='?page=$i'>$i</a></li>";
     }
 
-    // Next button
     if ($page < $total_pages) {
         echo "<li class='page-item'><a class='page-link' href='?page=" . ($page + 1) . "'>Next</a></li>";
     }

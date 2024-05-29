@@ -19,71 +19,70 @@ include '../../database/config.php'; ?>
 </head>
 
 <body>
+    <!-- Push Order Form -->
+    <br>
+    <center><select name="form" id="formSelector" class=" mb-5">
+            <option value="medicine">Medicine</option>
+            <option value="ampules_vials">Ampules and Vials</option>
+            <option value="alcohol">Alcohol</option>
+            <option value="milk">Milk</option>
+            <option value="diaper">Diaper</option>
+            <option value="creams_ointment">Creams and Ointment</option>
+            <option value="medical_supp">Medical supplies</option>
+            <option value="medicine_misc">Medicine Misc</option>
+        </select></center>
+    <div id="main">
+        <div id="formContent">
+            <!-- The included form will be displayed here -->
 
-
-
-
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card mt-5">
-                    <div class="card-body">
-                        <h5 class="text-center">Road 1 Pharmacy</h5>
-                        <form ENCTYPE="multipart/form-data" action="../../actions/admin/admin_add_item.php" method="post">
-                            <h3 class="text-center">Add New Item</h3>
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label for="item_name">Item Name</label>
-                                    <input type="text" class="form-control" name="item_name" required placeholder="Enter Item Name">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="unit_qty">Unit of Measurement(Number)</label>
-                                    <input type="number" class="form-control" name="unit_qty" required placeholder="Enter Item unit" min="1">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="unit_type">Unit of Measurement</label>
-                                    <select class="form-control" name="unit_type" id="">
-                                        <option value="mg">Milligrams</option>
-                                        <option value="ml">Milliliters</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="unit_price">Unit Price</label>
-                                    <input type="number" class="form-control" inputmode="decimal" name="unit_price" required placeholder="Enter Unit Price" min="1">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="mark_up">Mark up %</label>
-                                    <input type="number" class="form-control" name="mark_up" required placeholder="Enter Mark up" min="1">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="Type">Type</label>
-                                    <select class="form-control" name="type" id="">
-                                        <option value="Generic">Generic</option>
-                                        <option value="Branded">Branded</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="indication">Indidcation</label>
-                                    <input type="text" class="form-control" name="indication" required placeholder="Enter Medicine Indication">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="vendor_name">Vendor Name</label>
-                                    <input type="text" class="form-control" name="vendor_name" required placeholder="Enter Vendor Name">
-                                </div>
-                            </div>
-                            <input type="submit" name="submit" value="Add Item" class="btn btn-primary btn-block text">
-                        </form>
-                        <p class="text-center"><a href="admin_view_items.php" class="btn btn-danger mt-2 btn-block text ">Cancel</a></p>
-                    </div>
-                </div>
-            </div>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var formSelector = document.getElementById('formSelector');
+                var formContentDiv = document.getElementById('formContent');
+
+                // Clear the current content
+                formContentDiv.innerHTML = '';
+
+                // Function to handle the change event
+                function handleFormChange() {
+                    var selectedForm = formSelector.value;
+
+                    // Use AJAX to request the server to include the appropriate form
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'admin_include_form.php?form=' + selectedForm, true); // Correct path to include_form.php
+                    xhr.onload = function() {
+                        if (this.status == 200) {
+                            formContentDiv.innerHTML = this.responseText;
+                        } else {
+                            formContentDiv.innerHTML = 'Error loading form.';
+                        }
+                    };
+                    xhr.onerror = function() {
+                        formContentDiv.innerHTML = 'Error loading form.';
+                    };
+                    xhr.send();
+                }
+
+                // Trigger the initial form change
+                handleFormChange();
+
+                // Listen for the change event on the form selector
+                formSelector.addEventListener('change', handleFormChange);
+            });
+        </script>
     </div>
 
-</body>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</body>
+<!-- Load the full jQuery build first -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<!-- Then load Popper.js and Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 

@@ -1,17 +1,20 @@
 <?php
 include '../../database/config.php';
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();}
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+    </link>
     <!-- Bootstrap Bundle JS (includes Popper.js) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- SweetAlert2 JS -->
@@ -19,21 +22,22 @@ if (session_status() == PHP_SESSION_NONE) {
     <link rel="stylesheet" href="../../css/add_order.css">
     <title>Add Order</title>
 </head>
+
 <body>
     <?php
-    if(!isset($_SESSION['items'])){
+    if (!isset($_SESSION['items'])) {
         $_SESSION['items'] = [];
     }
-    if(isset($_POST['add_item'])){
-         if(isset($_POST['item_name']) && isset($_POST['item_qty'])){
+    if (isset($_POST['add_item'])) {
+        if (isset($_POST['item_name']) && isset($_POST['item_qty'])) {
             $item_name = $_POST['item_name'];
             $receive_qty = $_POST['item_qty'];
-            $priceQuery = mysqli_query($conn, "SELECT unit_price FROM items WHERE item_name = '$item_name'"); 
+            $priceQuery = mysqli_query($conn, "SELECT unit_price FROM items WHERE item_name = '$item_name'");
             $priceResult = mysqli_fetch_assoc($priceQuery);
             $price = $priceResult['unit_price'];
             $subtotal = $price * $receive_qty;
-            $expiry_date = $_POST['expiry_date']; 
-            $date_received = $_POST['date_received'];
+            $expiry_date = $_POST['expiry_date'];
+            $date_received = $_POST['date_received_check'];
             // echo $receipt_no;
             // echo $vendor;
             // echo $date_received;
@@ -48,7 +52,7 @@ if (session_status() == PHP_SESSION_NONE) {
             $expiry_date_obj = new DateTime($expiry_date);
             $date_received_obj = new DateTime($date_received);
             $interval = $date_received_obj->diff($expiry_date_obj);
-           if ($interval->y < 1) {
+            if ($interval->y < 1) {
                 // Send an error message using SweetAlert2
                 echo "<script>
                 Swal.fire({
@@ -63,22 +67,22 @@ if (session_status() == PHP_SESSION_NONE) {
                 exit; // Stop further execution if the condition is met
             }
             $item_data = [
-                'item_name' =>$item_name,
-                'price' =>$price,
-                'quantity' =>$receive_qty,
-                'subtotal' =>$subtotal,
-                'expiry_date' =>$expiry_date,
+                'item_name' => $item_name,
+                'price' => $price,
+                'quantity' => $receive_qty,
+                'subtotal' => $subtotal,
+                'expiry_date' => $expiry_date,
             ];
             $found = false;
-            foreach($_SESSION['items'] as $key => $prodSessionItem){
-                if($prodSessionItem['item_name'] == $item_name && $prodSessionItem['expiry_date'] == $expiry_date){
+            foreach ($_SESSION['items'] as $key => $prodSessionItem) {
+                if ($prodSessionItem['item_name'] == $item_name && $prodSessionItem['expiry_date'] == $expiry_date) {
                     $found = true;
                     $new_qty = $prodSessionItem['quantity'] + $receive_qty;
                     $new_subtotal = $prodSessionItem['subtotal'] + $subtotal;
 
                     $_SESSION['items'][$key] = [
                         'item_name' => $item_name,
-                        'price' =>$price,
+                        'price' => $price,
                         'quantity' => $new_qty,
                         'subtotal' => $new_subtotal,
                         'expiry_date' => $expiry_date,
@@ -87,7 +91,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 }
             }
 
-            if(!$found){
+            if (!$found) {
                 // Item not found in the session, add as new
                 $_SESSION['items'][] = $item_data;
             }
@@ -96,19 +100,15 @@ if (session_status() == PHP_SESSION_NONE) {
                <script>
                Swal.fire({
                    title: 'Item Added',
-                   text: 'Item Added"." ".$item_name;
-                   echo"',
+                   text: 'Item Added" . " " . $item_name;
+            echo "',
                    icon: 'success',
                    confirmButtonText: 'Ok'
                }).then(() =>{window.location.href = '../../pages/user/user_rdu_received_item.php';});
                </script>
            </div>
        </main>";
-        
         }
     }
-    
-  ?>
 
-
-   
+    ?>

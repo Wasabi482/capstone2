@@ -330,10 +330,98 @@ form{
     height: 100px;
     bottom: 2%;
     right: 1%;
-    
-
-
 }
+
+
+#chatbox{
+    position: fixed;
+    bottom: 20px;
+    right: 100px;
+    width: 500px;
+    height: 300px;
+    background-color: #7692FF;
+    padding: 10px;
+    display: none;
+    border-radius: 10px;
+    z-index: 6;
+}
+#chatbox a{
+    border: none;
+    position: absolute;
+    top :0;
+    right: 10px;
+}
+#chat_body {
+    font-family: Arial, sans-serif;
+}
+
+.chat-container {
+    position: relative;
+    width: 450px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    background-color: #ABD2FA;
+    padding: 10px;
+    border-radius: 10px;
+    height: 260px;
+}
+.chat-container h2 {
+    margin-top: 0;
+    color: #046865;
+}
+#chat-form{
+    position: absolute;
+    bottom: 25px;
+    right: 0;
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid ;
+}
+#chat-form button{
+    border: 1px solid #ccc;
+    color : white;
+    background-color: #37393A;
+}
+
+#chat-form input{
+    width: 88%;
+    color: black;
+    background-color: #D6C9C9;
+}
+
+.chat-messages {
+    margin-bottom: 1px;
+    overflow-y: scroll;
+    max-height: 150px;
+}
+
+.user-message {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: blue;
+}
+
+.bot-message {
+    margin-bottom: 10px;
+    font-style: italic;
+    color: #2C6E49;
+}
+#med_list {
+    position: fixed;
+    top: 13%;
+    left: 13%;
+    z-index: 5; /* Add this line */
+    background-color: #7692FF;
+    width: 73vw;
+    height: 75vh;
+    border-radius: 10px;
+    
+}
+
+
+
+
+
 .chatbot{
     width: 100px;
     height: 100px;
@@ -348,7 +436,7 @@ form{
 .cont {
     background-color:#E3EAF0;
     width: 60%;
-    height: 700px;
+    height: 725px;
     margin-top: 50px;
     color: black;
 }
@@ -363,8 +451,9 @@ form{
     color: black;
     text-align: center;
 }
-#about{
-    width: 100%;
+#About{
+    height: 600px;
+
 }
 
 .card-box{
@@ -447,7 +536,7 @@ div.faq-section1 h1{
     align-content: center;
 }
 .faq-box{
-    width: 100%;
+    width: 95%;
     height: 100%;
     display: grid;
     gap: 20px;
@@ -459,6 +548,7 @@ div.faq-section1 h1{
 }
 
 .faq-card{
+    margin-bottom: 10px;
     background-color: white;
     padding:1rem;
     width: 100%;
@@ -481,7 +571,7 @@ div.faq-section1 h1{
 }
 
 .faq-card:hover{
-    transform: scale(1.1);
+    transform: scale(0.9);
 }
 .carousel-cont{
     display: flex;
@@ -498,19 +588,43 @@ div.faq-section1 h1{
 
 .footer{
     margin-top: 50px;
-    height: 300px;
+    height: 100%;
     width: 100%;
-    background-color:#25A18E;
+    background-color:#E29578;
     z-index: 1;
     display: flex;
+    justify-content: center;
+    padding-top: 50px;
 }
-
+.inner-footer{
+    border-top: groove white;
+    margin-bottom: 10px;
+    width: 80%;
+    justify-content: center;
+}
 .div-footer{
     text-align: left;
     width: 100%;
     padding: 50px;
 }
+.footer-h1{
+    margin-top: 10px;
+    display: flex;
+}
+.footer-logo{
+    width: 70px;
+    height: auto;
+    filter: brightness(1.53) contrast(1.5);
+    font-size: 20px;
+    margin-right: 10px;
+}
 
+.gmaps{
+    border:0; 
+    border-radius:20px;
+    width:230px;
+    height:130px;
+}
 
 
 @media only screen and (max-width: 1200px) {
@@ -555,7 +669,7 @@ div.faq-section1 h1{
     }
     .faq-box{
         display: flex;
-    flex-direction: column;
+        flex-direction: column;
         margin: 0;
         width: 100%;
     }
@@ -565,12 +679,17 @@ div.faq-section1 h1{
 
     .footer{
         height: 100%;
-        flex-direction: column;
+       
     }
-    .div-footer{
+    .inner-footer{
         width: 100%;
-        text-align: center;
+    
     }
+    .gmaps{
+        width:80%;
+        height: 50%;
+    }
+   
 }
 
 @media only screen and (max-width: 992px){
@@ -594,7 +713,7 @@ div.faq-section1 h1{
     width: 80%;
    }
    #About{
-    height: 1700px;
+    height: 1300px;
    }
    .aboutus-card{
     
@@ -647,6 +766,38 @@ div.faq-section1 h1{
     .footer{
         width: 100%;
     }
+    #med_list {
+        left: 0;
+        width: 100%;
+        overflow: scroll;
+    }
+    #chatbox{
+        position: fixed;
+        bottom: 20px;
+        right: 50px;
+        width: 300px;
+        height: 400px;
+        background-color: #7692FF;
+        padding: 10px;
+        display: none;
+        border-radius: 10px;
+        z-index: 6;
+    }
+    .chat-container {
+        position: relative;
+        width: 250px;
+        height: 360px;
+    }
+    #chat-form{
+        width: 100%;
+        right: 0;
+        margin-top: 20px;
+       
+    }
+    #chat-form input{
+        width: 78%;
+    }
+    
 }
 @media only screen and (max-width: 480px) {
     .frontpage-container{
@@ -686,6 +837,11 @@ div.faq-section1 h1{
 
     .footer{
         width: 100%;
+    }
+    #med_list {
+        left: 0;
+        width: 100%;
+        overflow: scroll;
     }
 
 }
